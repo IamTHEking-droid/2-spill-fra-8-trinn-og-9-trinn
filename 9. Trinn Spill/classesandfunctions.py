@@ -47,11 +47,11 @@ class tille(pygame.sprite.Sprite):
         super().__init__()
         self.atr = atr
         if self.atr == "walkable":
-            self.image = pygame.image.load("Pygamed/Data/floortile.png").convert_alpha()
+            self.image = pygame.image.load("9. Trinn Spill/Data/floortile.png").convert_alpha()
         elif self.atr == "":
-            self.image=pygame.image.load("Pygamed/Data/DungeonWall.png").convert_alpha()
+            self.image=pygame.image.load("9. Trinn Spill/Data/DungeonWall.png").convert_alpha()
         elif self.atr == "torch":
-            self.image = pygame.image.load("Pygamed/Data/DungeonWall with Tortch.png").convert_alpha()
+            self.image = pygame.image.load("9. Trinn Spill/Data/DungeonWall with Tortch.png").convert_alpha()
         self.rect = self.image.get_rect(center= (x,y))
     def checkatribs(self):
         return self.atr
@@ -59,9 +59,9 @@ pygame.init()
 walllist = pygame.sprite.Group()
 def world(data):
     global walllist,dor,normtile,nndor
-    wall= pygame.image.load("Pygamed/Data/DungeonWall.png").convert_alpha()
-    floor =pygame.image.load("Pygamed/Data/floortile.png").convert_alpha()
-    walltorch= pygame.image.load("Pygamed/Data/DungeonWall with Tortch.png").convert_alpha()
+    wall= pygame.image.load("9. Trinn Spill/Data/DungeonWall.png").convert_alpha()
+    floor =pygame.image.load("9. Trinn Spill/Data/floortile.png").convert_alpha()
+    walltorch= pygame.image.load("9. Trinn Spill/Data/DungeonWall with Tortch.png").convert_alpha()
     #wall = pygame.image.load("walltile.png").convert_alpha()
     rowcount = 0
     tile_size = 50
@@ -145,14 +145,14 @@ def resetw():
 class door(pygame.sprite.Sprite):
     def __init__(self,pos,tile) -> None:
         super().__init__(allspritegroups)
-        self.image = pygame.image.load("Pygamed/Data/DungeonDoor_Closed.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonDoor_Closed.png").convert_alpha()
         self.pos = tile
         self.rect = self.image.get_rect(center=(pos[0]+25,pos[1]+50))
         self.changed = False
     def change(self):
         
         self.changed = True
-        self.image = pygame.image.load("Pygamed/Data/DungeonDoor_Open.png.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonDoor_Open.png.png").convert_alpha()
     def checkcol(self):
         if player.rect.colliderect(self.rect):
             self.kill()
@@ -267,7 +267,7 @@ class Bullet(pygame.sprite.Sprite):
     def destroy(self):
         for tillle in  walllist:
             if tillle.rect.colliderect(self.rect) and tillle.checkatribs() == "" or tillle.rect.colliderect(self.rect) and tillle.checkatribs() == "torch":
-                self.image = pygame.image.load("Pygamed/Data/LaserbulletCrash.png").convert_alpha()
+                self.image = pygame.image.load("9. Trinn Spill/Data/LaserbulletCrash.png").convert_alpha()
                 self.image = pygame.transform.rotozoom(self.image,0,0.5)
                 self.et = True
         
@@ -314,11 +314,11 @@ class Bullet(pygame.sprite.Sprite):
 class char(pygame.sprite.Sprite):
     def __init__(self,lives,gun):
         super().__init__()
-        player = pygame.image.load("Pygamed/Data/player_front.png").convert_alpha()
+        player = pygame.image.load("9. Trinn Spill/Data/player_front.png").convert_alpha()
         self.image = pygame.transform.rotozoom(player,0,3)
         self.move = None
         """ list will be sorted with players images of : up, down, left, right"""
-        self.images = [pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/player_back.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/player_front.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/player_left.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/player_right.png").convert_alpha(),0,3)]
+        self.images = [pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/player_back.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/player_front.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/player_left.png").convert_alpha(),0,3),pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/player_right.png").convert_alpha(),0,3)]
         self.rect = self.image.get_rect(center =(400,800))
         self.v = False
         self.posshoot = False
@@ -392,11 +392,11 @@ class char(pygame.sprite.Sprite):
         if pygame.mouse.get_pressed()[0]:
             if self.gun.checkshootable():
                 if self.gun.hasabil and self.gun.hasabil[0] == "throwable":
-                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/LaserbulletCrash.png"),0,0.3),"mage",25)
+                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/LaserbulletCrash.png"),0,0.3),"mage",25)
                 elif self.gun.hasabil and self.gun.hasabil[0] == "throwable1":
-                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/LaserbulletCrash.png"),0,0.3),"spawnshot",1)
+                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/LaserbulletCrash.png"),0,0.3),"spawnshot",1)
                 elif self.gun.hasabil and self.gun.hasabil[0] == "throwable2":
-                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/Mine.png"),0,0.3),"miner",15)
+                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/Mine.png"),0,0.3),"miner",15)
                 elif self.gun.hasabil and self.gun.hasabil[0] == "tel":
                     tpbullet(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,"miner",20)
 
@@ -406,7 +406,7 @@ class char(pygame.sprite.Sprite):
         if pygame.mouse.get_pressed()[2]:
             if self.gun.checkshootable():
                 if self.gun.hasabil and self.gun.hasabil[0] == "throwable2":
-                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("Pygamed/Data/Mine.png"),0,0.3),"miner",1)
+                    throwable(self.rect.center[0],self.rect.center[1],self.angle,self.gun.damage,self.bulimage,pygame.transform.rotozoom(pygame.image.load("9. Trinn Spill/Data/Mine.png"),0,0.3),"miner",1)
     def update(self):
         self.shoot()
         self.inputs()
@@ -417,7 +417,7 @@ class char(pygame.sprite.Sprite):
 class chest(pygame.sprite.Sprite):
     def __init__(self,pos):
         super().__init__(allspritegroups)
-        self.image = pygame.image.load("Pygamed/Data/DungeonChest.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonChest.png").convert_alpha()
         self.rect = self.image.get_rect(center=pos)
         
         self.what = random.choice(["h","g"])
@@ -457,7 +457,7 @@ class chest(pygame.sprite.Sprite):
 class tutchest(pygame.sprite.Sprite):
     def __init__(self,pos):
         super().__init__(allspritegroups)
-        self.image = pygame.image.load("Pygamed/Data/DungeonChest.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonChest.png").convert_alpha()
         self.rect = self.image.get_rect(center=pos)
         
         self.what = random.choice(["h","g"])
@@ -477,7 +477,7 @@ class tutchest(pygame.sprite.Sprite):
 class healthpack(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(allspritegroups)
-        self.image = pygame.image.load("Pygamed/Data/healthpack.png")
+        self.image = pygame.image.load("9. Trinn Spill/Data/healthpack.png")
         self.rect = self.image.get_rect(center =(player.rect.center[0]-300,player.rect.center[1]+300))
         self.ha = 0
     def heal(self):
@@ -504,7 +504,7 @@ class shootingenemy(pygame.sprite.Sprite):
         super().__init__(allspritegroups,shootingenemys)
         self.lives = 120
         self.healthbar = healthbar(self.lives,self.lives)
-        self.image = pygame.image.load("Pygamed/Data/Axethrower.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/Axethrower.png").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image,0,2)
         self.rect = self.image.get_rect()
         self.rect.center = pos
@@ -599,7 +599,7 @@ class shootingenemy(pygame.sprite.Sprite):
 class enembull(pygame.sprite.Sprite):
     def __init__(self,x,y,angle):
         super().__init__(allspritegroups,shootingenemysbullets)
-        self.image = pygame.image.load("Pygamed/Data/Axe.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/Axe.png").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image,220,1)
         self.damage = 15
         self.angle = math.radians(angle)
@@ -743,7 +743,7 @@ class throwable(pygame.sprite.Sprite):
                 throwshots2((self.rect.center[0],self.rect.center[1]),angle,self.splashimage,self.damage)
                 angle+=20
         if self.t == "miner":
-            throwshots3((self.rect.center[0],self.rect.center[1]),pygame.image.load("Pygamed/Data/Mine_Hidden.png").convert_alpha(),self.damage,pygame.image.load("Pygamed/Data/Mine_Explotion.png").convert_alpha()) 
+            throwshots3((self.rect.center[0],self.rect.center[1]),pygame.image.load("9. Trinn Spill/Data/Mine_Hidden.png").convert_alpha(),self.damage,pygame.image.load("9. Trinn Spill/Data/Mine_Explotion.png").convert_alpha()) 
     def update(self):
         self.move()
         self.killself()
@@ -761,8 +761,8 @@ class enemy(pygame.sprite.Sprite):
     def __init__(self,posx,posy):
         super().__init__(allspritegroups,enemies)
         self.isanim = False
-        self.image = pygame.image.load("Pygamed/Data/DungeonBat1.png").convert_alpha()
-        self.sprites = [self.image,pygame.image.load("Pygamed/Data/DungeonBat2.png").convert_alpha()]
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonBat1.png").convert_alpha()
+        self.sprites = [self.image,pygame.image.load("9. Trinn Spill/Data/DungeonBat2.png").convert_alpha()]
         self.image = pygame.transform.rotozoom(self.image,0,1.5)
         self.currsprite = 0
         self.rect = self.image.get_rect(center =(posx,posy))
@@ -945,7 +945,7 @@ class camera(pygame.sprite.Group):
 class mage(pygame.sprite.Sprite):
     def __init__(self,pos):
         super().__init__(mages,  allspritegroups)
-        self.image = pygame.image.load("Pygamed/Data/DungeonMage.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/DungeonMage.png").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image,0,2)
         self.rect = self.image.get_rect(center = pos) 
         self.prevshot = pygame.time.get_ticks()
@@ -975,7 +975,7 @@ class mage(pygame.sprite.Sprite):
 class mageshoots(pygame.sprite.Sprite):
     def __init__(self,pos,angle) -> None:
         super().__init__(allspritegroups,mageshots)
-        self.image = pygame.image.load("Pygamed/Data/MagePowerball.png").convert_alpha()
+        self.image = pygame.image.load("9. Trinn Spill/Data/MagePowerball.png").convert_alpha()
         self.rect = self.image.get_rect(center = pos)
         self.damage = 5
         self.angle = math.radians(angle)
@@ -1120,7 +1120,7 @@ class throwshots3(pygame.sprite.Sprite):
 ################################################################################
 def shops():
     pygame.draw.rect(screen,(179,105,68),pygame.Rect(100,50,1000,600))
-    gunsu = [pygame.image.load("Pygamed/Data/Dungeon_Pistol.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Minigun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Rappidfire.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Hardhitter.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_AR.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Minigun_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Blastgun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Sniper.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Sniper_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Shotgun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Minelanucher.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Teleportgun.png").convert_alpha()]
+    gunsu = [pygame.image.load("9. Trinn Spill/Data/Dungeon_Pistol.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Minigun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Rappidfire.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Hardhitter.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_AR.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Minigun_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Blastgun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Sniper.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Sniper_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Shotgun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Minelanucher.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Teleportgun.png").convert_alpha()]
     col = 200
     c = 0
     row = 60
@@ -1145,10 +1145,10 @@ def shops():
 def updateit():
     allspritegroups.update()
 ################################################################################
-gunname =[pygame.image.load("Pygamed/Data/Dungeon_Pistol.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Minigun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Rappidfire.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Hardhitter.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_AR.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Minigun_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Blastgun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Sniper.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Sniper_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Shotgun.png").convert_alpha(),pygame.image.load("Pygamed/Data/Minelanucher.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Teleportgun.png").convert_alpha()]
+gunname =[pygame.image.load("9. Trinn Spill/Data/Dungeon_Pistol.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Minigun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Rappidfire.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Hardhitter.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_AR.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Minigun_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Blastgun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Sniper.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Sniper_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Shotgun.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Minelanucher.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Teleportgun.png").convert_alpha()]
 
 guns = [gun(500,12,1000,15,),gun(100,30,1500,3.5),gun(5,40,1000,1),gun(2000,100,0,100),gun(300,30,1000,30),gun(100,30,1500,2,"Seeping"),gun(1000,30,1200,10,"throwable"), gun(3000,1,3000,250),gun(3000,1,3000,250,"Seeping"),gun(2000,3,3000,30,"throwable1"),gun(500,12,1000,15,"throwable2"),gun(500,30,1000,30,"tel")]
-gunimage = [pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/HB1.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Bullet_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Bullet_Seeping.png").convert_alpha(),pygame.image.load("Pygamed/Data/bullet.png").convert_alpha(),pygame.image.load("Pygamed/Data/Mine.png").convert_alpha(),pygame.image.load("Pygamed/Data/Dungeon_Teleportgun_Shot.png").convert_alpha()] #images for bullets
+gunimage = [pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/HB1.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Bullet_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Bullet_Seeping.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/bullet.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Mine.png").convert_alpha(),pygame.image.load("9. Trinn Spill/Data/Dungeon_Teleportgun_Shot.png").convert_alpha()] #images for bullets
 enemies =pygame.sprite.Group()
 b = pygame.sprite.Group()
 player = char(100,guns[0])
